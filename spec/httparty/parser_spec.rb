@@ -165,8 +165,9 @@ RSpec.describe HTTParty::Parser do
       HTTParty::Parser.new('body', nil)
     end
 
-    it "parses xml with MultiXml" do
-      expect(MultiXml).to receive(:parse).with('body')
+    it "parses xml with MultiXML" do
+      xml_parser = defined?(MultiXML) ? MultiXML : MultiXml
+      expect(xml_parser).to receive(:parse).with('body')
       subject.send(:xml)
     end
 

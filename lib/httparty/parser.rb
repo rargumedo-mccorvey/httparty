@@ -119,7 +119,7 @@ module HTTParty
 
     def xml
       require 'multi_xml'
-      MultiXml.parse(body)
+      (defined?(MultiXML) ? MultiXML : MultiXml).parse(body)
     end
 
     UTF8_BOM = "\xEF\xBB\xBF"
