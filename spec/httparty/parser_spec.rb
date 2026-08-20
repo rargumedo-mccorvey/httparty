@@ -165,7 +165,14 @@ RSpec.describe HTTParty::Parser do
       HTTParty::Parser.new('body', nil)
     end
 
-    it "parses xml with MultiXml" do
+    it "parses xml with MultiXML when available" do
+      stub_const('MultiXML', double)
+      expect(MultiXML).to receive(:parse).with('body')
+      subject.send(:xml)
+    end
+
+    it "falls back to MultiXml when MultiXML is unavailable" do
+      hide_const('MultiXML') if defined?(MultiXML)
       expect(MultiXml).to receive(:parse).with('body')
       subject.send(:xml)
     end
