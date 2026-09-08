@@ -126,7 +126,7 @@ module HTTParty
 
     def json
       require 'json'
-      JSON.parse(body, :quirks_mode => true, :allow_nan => true)
+      JSON.parse(body, :allow_nan => true)
     end
 
     def csv
